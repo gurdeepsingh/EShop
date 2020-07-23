@@ -1,0 +1,18 @@
+.card-header {
+  border-bottom: 1px solid #ccc;
+
+  h1 {
+    color: #333;
+    display: inline-block;
+    margin: 3px 0;
+  }
+  .mini-cart {
+    float: right;
+    cursor: pointer;
+
+    &:after {
+      font-size: 2rem;
+      content: "\1f6d2";
+    }
+  }
+}

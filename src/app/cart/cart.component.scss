@@ -1,0 +1,36 @@
+.main-header {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 1000px;
+  border-bottom: 1px solid #ccc;
+  box-sizing: border-box;
+
+  h1 {
+    color: #333;
+    display: inline-block;
+    margin: 3px 0;
+  }
+  .link {
+    color: blue;
+    text-decoration: none;
+    font-size: .8rem;
+
+    &:visited {
+      color: blue;
+    }
+  }
+}
+
+.products {
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 20px;
+  box-sizing: border-box;
+
+  label {
+    color: #888;
+  }
+  .checkout, .totals {
+    margin-top: 20px;
+  }
+}

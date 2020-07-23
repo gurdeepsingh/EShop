@@ -1,0 +1,83 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-11">
+        <h1>{{ title }}</h1>
+      </div>
+      <div
+        class="col-md-1"
+        (click)="goCart()"
+        [routerLink]="['cart']"
+        title="Checkout"
+      >
+        <i class="fa fa-shopping-cart fa-2x"></i>
+        {{ cart$ | async }}
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <span *ngIf="!(count$ | async)">Cart is Empty</span>
+    <div class="table-responsive" *ngIf="count$ | async">
+      <table class="table">
+        <thead>
+          <th>Image</th>
+          <th>Product</th>
+          <th>Price</th>
+          <th>qty</th>
+          <th>cost</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products$ | async">
+            <td>
+              <img
+                [src]="product.imageUrl"
+                [title]="product.productName"
+                [style.width.px]="50"
+                [style.margin.px]="2"
+              />
+            </td>
+            <td>
+              {{ product.productName }}
+            </td>
+            <td>{{ product.price | currency: "GBP":"symbol" }}</td>
+            <td>
+              {{ product.qty }}
+            </td>
+            <td>
+              {{
+                (product.qty * product.price).toFixed(2)
+                  | currency: "GBP":"symbol"
+              }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-10">
+        <button
+          [routerLink]="['']"
+          class="btn btn-secondary"
+          title="Keep shopping"
+        >
+          <i class="fa fa-chevron-left"></i> Back
+        </button>
+        &nbsp;
+        <button
+          *ngIf="count$ | async"
+          class="btn btn-primary"
+          (click)="resetStore()"
+          [routerLink]="['']"
+        >
+          Complete Checkout
+        </button>
+      </div>
+      <div class="col-md-2" *ngIf="count$ | async">
+        <label>Total:</label>
+        {{ (total$ | async).toFixed(2) | currency: "GBP":"symbol" }}
+      </div>
+    </div>
+  </div>
+</div>

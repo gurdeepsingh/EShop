@@ -1,0 +1,34 @@
+<td>
+  <img
+    [src]="productInfo.imageUrl"
+    [title]="productInfo.productName"
+    [style.width.px]="imageWidth"
+    [style.margin.px]="imageMargin"
+  />
+</td>
+<td>{{ productInfo.productCode }}</td>
+<td>
+  <a [routerLink]="['/product', productInfo.productId]">
+    {{ productInfo.productName }}</a
+  >
+</td>
+<td>{{ productInfo.price | currency: "GBP":"symbol" }}</td>
+<td>
+  <product-rating [rating]="productInfo.starRating"> </product-rating>
+</td>
+<td>
+  <div class="input-group mb-3 row">
+    <input
+      type="text"
+      class="form-control"
+      [style.width.px]="20"
+      value="{{ productInfo.qty }}"
+      (keyup)="onQtyChange($event)"
+    />
+    <div class="input-group-append">
+      <button class="btn btn-warning" (click)="addProduct(productInfo)">
+        Add to Basket
+      </button>
+    </div>
+  </div>
+</td>
